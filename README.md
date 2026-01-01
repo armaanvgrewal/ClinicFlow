@@ -2,7 +2,7 @@
 
 **AI-Powered Triage & Queue Optimization for Free Clinics**
 
-[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://your-app-url-here.streamlit.app)
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://clinicflow-demo.streamlit.app)
 
 ---
 
@@ -217,9 +217,9 @@ This project is open-source and available under the MIT License.
 
 ## 👤 Author
 
-**[Your Name]**
+**[Armaan Grewal]**
 - High School Student & AI Leaders Club President
-- 5+ years volunteering at free medical clinics
+- Years of experience volunteering at free medical clinics
 - Motivated by personal experience witnessing delayed critical care
 
 ---
@@ -238,7 +238,7 @@ This project is open-source and available under the MIT License.
 For questions, partnerships, or deployment assistance:
 - Email: [your-email@example.com]
 - GitHub: [@armaanvgrewal](https://github.com/armaanvgrewal)
-- Demo: [ClinicFlow](https://clinicflow.streamlit.app)
+- Demo: [ClinicFlow](https://clinicflow-demo.streamlit.app)
 
 ---
 
