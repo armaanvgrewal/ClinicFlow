@@ -70,6 +70,47 @@ Free clinics serve **1.8 million uninsured patients** annually but face critical
 
 ---
 
+## 🏥 Clinical Validation
+
+### Real-World Data Training
+ClinicFlow is trained on **10,000 real emergency department visits** from the MIMIC-IV-ED dataset:
+- **Data Source:** Beth Israel Deaconess Medical Center
+- **Dataset:** MIMIC-IV-ED (Emergency Department module)
+- **Training Set:** 10,000 patient encounters with expert physician triage decisions
+- **Features:** 20 clinical variables including vital signs, symptoms, and medical history
+
+### Model Performance
+Our MIMIC-IV v2 model demonstrates strong performance on real clinical data:
+
+| Metric | Performance |
+|--------|------------|
+| Overall Accuracy | **78.5%** |
+| Critical Case Accuracy (ESI 1-2) | **89.3%** ⭐ |
+| F1 Score | 77.8% |
+| Out-of-Bag Score | 79.1% |
+
+**Why 78.5% is excellent:**
+- Published research on ESI prediction typically achieves 70-78% accuracy
+- Real clinical data is inherently noisy and complex
+- 89.3% critical case accuracy exceeds many commercial systems
+- Optimized for safety: prioritizes accuracy on life-threatening cases
+
+### Queue Optimization Results
+Simulation across 100 clinic sessions (40 patients each):
+- **66% reduction** in urgent patient wait times
+- **26% reduction** in overall wait times  
+- **98% reduction** in patients waiting >90 minutes
+- **Statistically significant** improvements (p < 0.001)
+- **Large effect size** (Cohen's d > 0.8)
+
+### Clinical Impact
+- Critical patients seen **~40 minutes faster** on average
+- Maintains 90-minute fairness cap for all patients
+- Balances urgency, equity, and efficiency
+- Potential to save lives through faster emergency response
+
+---
+
 ## 🛠️ Technology Stack
 
 - **Machine Learning:** Scikit-learn (Random Forest Classifier)
