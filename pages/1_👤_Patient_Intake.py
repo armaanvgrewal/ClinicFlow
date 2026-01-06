@@ -67,9 +67,9 @@ with st.form("patient_intake_form"):
         )
         
         patient_gender = st.selectbox(
-            "Gender",
+            "Biological Sex",
             options=["Male", "Female"],
-            help="Biological sex"
+            help="Biological sex at birth"
         )
     
     with col2:

@@ -293,9 +293,37 @@ if st.session_state.queue:
             # Calculate metrics for both
             def calc_metrics(queue):
                 current = datetime.now()
-                wait_times = [(current - p['arrival_time']).total_seconds() / 60 for p in queue]
-                urgent_waits = [(current - p['arrival_time']).total_seconds() / 60 
-                               for p in queue if p['urgency_level'] <= 2]
+                service_time_per_patient = 15  # minutes per patient
+                
+                wait_times = []
+                urgent_waits = []
+                
+                # Simulate service: each patient is served, then next patient's wait is calculated
+                cumulative_time = 0
+                
+                for idx, p in enumerate(queue):
+                    # Time this patient has already waited
+                    already_waited = (current - p['arrival_time']).total_seconds() / 60
+                    
+                    # Time until this patient starts being served
+                    # = cumulative service time of all patients ahead
+                    time_to_service = cumulative_time
+                    
+                    # Total wait time = already waited + time until service starts
+                    total_wait = already_waited + time_to_service
+                    
+                    wait_times.append(total_wait)
+                    if p['urgency_level'] <= 2:
+                        urgent_waits.append(total_wait)
+                    
+                    # Add this patient's service time to cumulative
+                    # Critical patients might be seen faster (adjust based on urgency)
+                    if p['urgency_level'] <= 2:
+                        service_time = service_time_per_patient * 0.8  # Critical patients seen 20% faster
+                    else:
+                        service_time = service_time_per_patient
+                    
+                    cumulative_time += service_time
                 
                 return {
                     'avg_wait': np.mean(wait_times) if wait_times else 0,
@@ -337,7 +365,7 @@ if st.session_state.queue:
                 st.metric(
                     "Patients >90 min", 
                     cf_metrics['over_90'],
-                    delta=fcfs_metrics['over_90'] - cf_metrics['over_90'],
+                    delta=cf_metrics['over_90'] - fcfs_metrics['over_90'],
                     delta_color="inverse"
                 )
     
@@ -369,7 +397,7 @@ else:
         st.markdown("""
         **Or Load Sample Patients:**
         
-        Automatically add 5-10 sample patients to test the queue optimization.
+        Automatically add 25-30 sample patients to test the queue optimization.
         """)
         
         if st.button("Load Sample Patients", width='stretch'):
@@ -377,8 +405,8 @@ else:
             try:
                 patients_df = pd.read_csv('synthetic_patients.csv')
                 
-                # Sample 8 random patients
-                sample = patients_df.sample(n=8)
+                # Sample 28 random patients
+                sample = patients_df.sample(n=28)
                 
                 # Add to queue with staggered arrival times
                 current_time = datetime.now()
