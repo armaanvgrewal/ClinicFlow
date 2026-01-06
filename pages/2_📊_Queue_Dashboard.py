@@ -283,95 +283,95 @@ if st.session_state.queue:
         # COMPARISON VIEW
         # ====================================================================
         
-        st.markdown("---")
-        st.markdown("### 🔄 FCFS vs ClinicFlow Comparison")
-        
-        with st.expander("📊 Show Comparison Analysis"):
-            # FCFS order
-            fcfs_queue = sorted(st.session_state.queue, key=lambda x: x['arrival_time'])
+        if False:  # HIDDEN: Remove this line to show comparison
+            st.markdown("---")
+            st.markdown("### 🔄 FCFS vs ClinicFlow Comparison")
             
-            # Calculate metrics for both
-            def calc_metrics(queue):
-                current = datetime.now()
-                service_time_per_patient = 15  # minutes per patient
+            with st.expander("📊 Show Comparison Analysis"):
+                # FCFS order
+                fcfs_queue = sorted(st.session_state.queue, key=lambda x: x['arrival_time'])
                 
-                wait_times = []
-                urgent_waits = []
+                # Calculate metrics for both - WITH DYNAMIC CASCADE EFFECTS
+                def calc_metrics(queue):
+                    current = datetime.now()
+                    service_time_per_patient = 15  # minutes per patient
+                    
+                    wait_times = []
+                    urgent_waits = []
+                    
+                    # Simulate service: each patient is served, then next patient's wait is calculated
+                    cumulative_time = 0
+                    
+                    for idx, p in enumerate(queue):
+                        # Time this patient has already waited
+                        already_waited = (current - p['arrival_time']).total_seconds() / 60
+                        
+                        # Time until this patient starts being served
+                        # = cumulative service time of all patients ahead
+                        time_to_service = cumulative_time
+                        
+                        # Total wait time = already waited + time until service starts
+                        total_wait = already_waited + time_to_service
+                        
+                        wait_times.append(total_wait)
+                        if p['urgency_level'] <= 2:
+                            urgent_waits.append(total_wait)
+                        
+                        # Add this patient's service time to cumulative
+                        # Critical patients might be seen faster (adjust based on urgency)
+                        if p['urgency_level'] <= 2:
+                            service_time = service_time_per_patient * 0.8  # Critical patients seen 20% faster
+                        else:
+                            service_time = service_time_per_patient
+                        
+                        cumulative_time += service_time
+                    
+                    return {
+                        'avg_wait': np.mean(wait_times) if wait_times else 0,
+                        'max_wait': max(wait_times) if wait_times else 0,
+                        'urgent_avg': np.mean(urgent_waits) if urgent_waits else 0,
+                        'over_90': sum(1 for w in wait_times if w > 90)
+                    }
                 
-                # Simulate service: each patient is served, then next patient's wait is calculated
-                cumulative_time = 0
+                fcfs_metrics = calc_metrics(fcfs_queue)
+                cf_metrics = calc_metrics(optimized_queue)
                 
-                for idx, p in enumerate(queue):
-                    # Time this patient has already waited
-                    already_waited = (current - p['arrival_time']).total_seconds() / 60
-                    
-                    # Time until this patient starts being served
-                    # = cumulative service time of all patients ahead
-                    time_to_service = cumulative_time
-                    
-                    # Total wait time = already waited + time until service starts
-                    total_wait = already_waited + time_to_service
-                    
-                    wait_times.append(total_wait)
-                    if p['urgency_level'] <= 2:
-                        urgent_waits.append(total_wait)
-                    
-                    # Add this patient's service time to cumulative
-                    # Critical patients might be seen faster (adjust based on urgency)
-                    if p['urgency_level'] <= 2:
-                        service_time = service_time_per_patient * 0.8  # Critical patients seen 20% faster
-                    else:
-                        service_time = service_time_per_patient
-                    
-                    cumulative_time += service_time
+                col1, col2 = st.columns(2)
                 
-                return {
-                    'avg_wait': np.mean(wait_times) if wait_times else 0,
-                    'max_wait': max(wait_times) if wait_times else 0,
-                    'urgent_avg': np.mean(urgent_waits) if urgent_waits else 0,
-                    'over_90': sum(1 for w in wait_times if w > 90)
-                }
-            
-            fcfs_metrics = calc_metrics(fcfs_queue)
-            cf_metrics = calc_metrics(optimized_queue)
-            
-            col1, col2 = st.columns(2)
-            
-            with col1:
-                st.markdown("#### First-Come-First-Served")
-                st.metric("Average Wait", f"{fcfs_metrics['avg_wait']:.0f} min")
-                st.metric("Urgent Patient Wait", f"{fcfs_metrics['urgent_avg']:.0f} min")
-                st.metric("Patients >90 min", fcfs_metrics['over_90'])
-            
-            with col2:
-                st.markdown("#### ClinicFlow Optimized")
-                improvement_avg = ((fcfs_metrics['avg_wait'] - cf_metrics['avg_wait']) / 
-                                  max(fcfs_metrics['avg_wait'], 1)) * 100
-                improvement_urgent = ((fcfs_metrics['urgent_avg'] - cf_metrics['urgent_avg']) / 
-                                     max(fcfs_metrics['urgent_avg'], 1)) * 100
+                with col1:
+                    st.markdown("#### First-Come-First-Served")
+                    st.metric("Average Wait", f"{fcfs_metrics['avg_wait']:.0f} min")
+                    st.metric("Urgent Patient Wait", f"{fcfs_metrics['urgent_avg']:.0f} min")
+                    st.metric("Patients >90 min", fcfs_metrics['over_90'])
                 
-                st.metric(
-                    "Average Wait", 
-                    f"{cf_metrics['avg_wait']:.0f} min",
-                    delta=f"{-improvement_avg:.0f}%" if improvement_avg > 0 else None,
-                    delta_color="inverse"
-                )
-                st.metric(
-                    "Urgent Patient Wait", 
-                    f"{cf_metrics['urgent_avg']:.0f} min",
-                    delta=f"{-improvement_urgent:.0f}%" if improvement_urgent > 0 else None,
-                    delta_color="inverse"
-                )
-                st.metric(
-                    "Patients >90 min", 
-                    cf_metrics['over_90'],
-                    delta=cf_metrics['over_90'] - fcfs_metrics['over_90'],
-                    delta_color="inverse"
-                )
+                with col2:
+                    st.markdown("#### ClinicFlow Optimized")
+                    improvement_avg = ((fcfs_metrics['avg_wait'] - cf_metrics['avg_wait']) / 
+                                      max(fcfs_metrics['avg_wait'], 1)) * 100
+                    improvement_urgent = ((fcfs_metrics['urgent_avg'] - cf_metrics['urgent_avg']) / 
+                                         max(fcfs_metrics['urgent_avg'], 1)) * 100
+                    
+                    st.metric(
+                        "Average Wait", 
+                        f"{cf_metrics['avg_wait']:.0f} min",
+                        delta=f"{-improvement_avg:.0f}%" if improvement_avg > 0 else None,
+                        delta_color="inverse"
+                    )
+                    st.metric(
+                        "Urgent Patient Wait", 
+                        f"{cf_metrics['urgent_avg']:.0f} min",
+                        delta=f"{-improvement_urgent:.0f}%" if improvement_urgent > 0 else None,
+                        delta_color="inverse"
+                    )
+                    st.metric(
+                        "Patients >90 min", 
+                        cf_metrics['over_90'],
+                        delta=cf_metrics['over_90'] - fcfs_metrics['over_90'],
+                        delta_color="inverse"
+                    )
     
     else:
         st.info("No patients match the selected urgency filter")
-
 else:
     # Empty queue state
     st.info("📭 Queue is empty - No patients currently waiting")
