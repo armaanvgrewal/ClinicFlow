@@ -191,7 +191,7 @@ with col1:
     st.markdown("""
     Free clinics serve **1.8 million patients** annually with limited resources:
     
-    - '⚠️' **First-come-first-served** → Critical patients wait dangerously long
+    - '⚠️' **First-come-first-served** '→' Critical patients wait dangerously long
     - 👥 **No trained triage nurses** → Volunteer staff lack medical expertise
     - 📋 **Walk-in model** → No appointment system to manage flow
     - 💰 **Zero budget** → Can't afford commercial triage systems ($10K-$50K)
