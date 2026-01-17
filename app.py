@@ -136,7 +136,7 @@ if 'patient_counter' not in st.session_state:
 # ============================================================================
 
 with st.sidebar:
-    st.image("https://via.placeholder.com/300x100/1f77b4/ffffff?text=ClinicFlow", 
+    st.image("https://placehold.co/300x100/1f77b4/ffffff?text=ClinicTriage", 
              width='stretch')
     
     st.markdown("---")
