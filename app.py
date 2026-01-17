@@ -139,16 +139,6 @@ with st.sidebar:
     st.image("https://placehold.co/300x100/1f77b4/ffffff?text=ClinicTriage", 
              width='stretch')
     
-    st.markdown("---")
-    
-    st.markdown("### 🏥 Navigation")
-    st.markdown("""
-    **📋 Pages:**
-    - 🏠 Home (this page)
-    - 👤 Patient Intake
-    - 📊 Queue Dashboard  
-    - 📈 Simulation
-    
     Use the sidebar to navigate between pages.
     """)
     
