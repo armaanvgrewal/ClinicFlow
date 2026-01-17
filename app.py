@@ -159,7 +159,7 @@ with st.sidebar:
     - **78.5%** accuracy on real clinical data
     - **89.3%** critical case accuracy
     - **66%** reduction in urgent wait times
-    - Trained on **10K** real ED visits
+    - Trained on **'10K'** real ED visits
     """)
     
     st.caption(f"Model: {st.session_state.get('model_version', 'Loading...')}")
