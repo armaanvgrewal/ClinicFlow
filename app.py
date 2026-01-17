@@ -176,7 +176,7 @@ st.markdown('<p class="sub-header">AI-Powered Triage & Queue Optimization for Fr
 st.markdown("""
 <div style='text-align: center; margin-bottom: 1rem;'>
     <span style='background-color: #1f77b4; color: white; padding: 0.5rem 1rem; border-radius: 0.5rem; font-weight: bold;'>
-        ✅ Trained on MIMIC-IV-ED | 10,000 Real ED Visits | 78.5% Accuracy
+        '✅' Trained on MIMIC-IV-ED | 10,000 Real ED Visits | 78.5% Accuracy
     </span>
 </div>
 """, unsafe_allow_html=True)
