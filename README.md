@@ -1,4 +1,4 @@
-# 🏥 ClinicFlow
+# 🏥 ClinicTriage
 
 **AI-Powered Triage & Queue Optimization for Free Clinics**
 
@@ -8,7 +8,7 @@
 
 ## 🎯 Overview
 
-ClinicFlow is an AI-powered system that revolutionizes patient triage and queue management for free clinics serving underserved communities. By combining machine learning with multi-objective optimization, ClinicFlow reduces critical patient wait times by 66% while keeping max wait times below 90 minutes.
+ClinicTriage is an AI-powered system that revolutionizes patient triage and queue management for free clinics serving underserved communities. By combining machine learning with multi-objective optimization, ClinicTriage reduces critical patient wait times by 66% while keeping max wait times below 90 minutes.
 
 ### The Problem
 
@@ -63,7 +63,7 @@ Free clinics serve **1.8 million uninsured patients** annually but face critical
 - One-click patient management
 
 ### For Administrators
-- FCFS vs ClinicFlow comparison
+- FCFS vs ClinicTriage comparison
 - Statistical analysis and reporting
 - Exportable data and metrics
 - Simulation tools
@@ -137,7 +137,7 @@ Fairness enforced → No wait >90 minutes → Equitable care
 1. **Patient Intake:** Fill out the triage form with symptoms and vitals
 2. **View Prediction:** See AI urgency assessment, then add to queue
 3. **Queue Dashboard:** Monitor and manage optimized patient queue in real-time (to test, you may load sample patients)
-4. **Run Simulation:** Compare FCFS vs ClinicFlow queue optimization performance (Monte Carlo Simulation)
+4. **Run Simulation:** Compare FCFS vs ClinicTriage queue optimization performance (Monte Carlo Simulation)
 
 ---
 
@@ -211,9 +211,9 @@ This project is open-source and available under the MIT License.
 For questions and partnerships:
 - Email: [armaanvgrewal@outlook.com]
 - GitHub: [@armaanvgrewal](https://github.com/armaanvgrewal)
-- Streamlit Demo: [ClinicFlow](https://clinictriage-demo.streamlit.app/)
-- React User App: [ClinicFlow](https://clinicflow-app-ag.web.app/)
+- Streamlit Demo: [ClinicTriage](https://clinictriage-demo.streamlit.app/)
+- React User App: [ClinicTriage](https://clinicflow-app-ag.web.app/)
 
 ---
 
-**ClinicFlow** - *Technology serving the underserved* 🏥✨
+**ClinicTriage** - *Technology serving the underserved* 🏥✨
