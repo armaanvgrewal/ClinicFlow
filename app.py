@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 ClinicTriage - AI-Powered Triage System for Free Clinics
 Main Streamlit Application

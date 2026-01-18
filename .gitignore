@@ -41,6 +41,7 @@ mimic_data/
 # Alternative model versions (experiments)
 triage_model_mimic.pkl
 triage_model_mimic_v2_enhanced.pkl
+triage_model_mimic_v2_jan.pkl
 model_metadata_mimic.pkl
 model_metadata_mimic_v2_enhanced.pkl
 
