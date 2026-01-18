@@ -59,3 +59,5 @@ compare_all_models.py
 # Enhanced dataset variant
 mimic_patients_10k_enhanced.csv
 EOF
+triage_model_mimic_v2_jan.pkl
+*.pkl
