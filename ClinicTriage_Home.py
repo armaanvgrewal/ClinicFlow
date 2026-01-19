@@ -168,10 +168,82 @@ st.markdown("""
 
 st.markdown("---")
 
+# How it works
+st.markdown("### 🔄 How ClinicTriage Works")
+
+col1, col2, col3 = st.columns(3)
+
+with col1:
+    st.markdown("""
+    #### 1️⃣ Patient Intake
+    
+    Patient completes simple form on tablet:
+    - Chief complaint
+    - Symptom severity (1-10)
+    - Basic vitals (if available)
+    - Medical history
+    
+    ⏱️ Takes 2-3 minutes  
+    ✅ Untrained Volunteers-Friendly
+    """)
+
+with col2:
+    st.markdown("""
+    #### 2️⃣ AI Triage
+    
+    MIMIC-IV trained model analyzes:
+    - 20 clinical features
+    - Red flag symptoms
+    - Vital sign patterns
+    - Chronic conditions
+    
+    ⚡ Predicts urgency in <1 second  
+    ✅ 83.5% critical detection rate
+    """)
+
+with col3:
+    st.markdown("""
+    #### 3️⃣ Smart Queue
+    
+    Optimization balances:
+    - Medical urgency (safety)
+    - Wait time fairness (equity)
+    - Throughput (efficiency)
+    - Physician Overrides
+    
+    🎯 Updates dynamically as patients arrive  
+    ✅ ~66% reduction in critical patient wait
+    """)
+
+st.markdown("---")
+
+# Call to action
+st.markdown("### 🚀 Get Started")
+
+col1, col2, col3 = st.columns(3)
+
+with col1:
+    st.info("👤 **Try Patient Intake**\n\nExperience the triage form and see AI predictions in real-time.")
+    if st.button("Go to Patient Intake", use_container_width=True):
+        st.switch_page("pages/1_👤_Patient_Intake.py")
+
+with col2:
+    st.success("📊 **View Queue Dashboard**\n\nSee how ClinicTriage optimizes patient order for providers.")
+    if st.button("Go to Queue Dashboard", use_container_width=True):
+        st.switch_page("pages/2_📊_Queue_Dashboard.py")
+
+with col3:
+    st.warning("📈 **Run Simulation**\n\nCompare FCFS vs ClinicTriage with real clinic data.")
+    if st.button("Go to Simulation", use_container_width=True):
+        st.switch_page("pages/3_📈_Simulation.py")
+
+st.markdown("---")
+
 # Introduction
 col1, col2 = st.columns([2, 1])
 
 with col1:
+    st.markdown("### Why We Need ClinicTriage")
     st.markdown("### 🎯 The Problem")
     st.markdown("""
     Free clinics serve **1.8 million patients** annually with limited resources:
@@ -238,74 +310,6 @@ with col2:
         delta="Free & open-source",
         help="Commercial triage systems cost $10K-$50K"
     )
-
-st.markdown("---")
-
-# How it works
-st.markdown("### 🔄 How ClinicTriage Works")
-
-col1, col2, col3 = st.columns(3)
-
-with col1:
-    st.markdown("""
-    #### 1️⃣ Patient Intake
-    
-    Patient completes simple form on tablet:
-    - Chief complaint
-    - Symptom severity (1-10)
-    - Basic vitals (if available)
-    - Medical history
-    
-    ⏱️ Takes 2-3 minutes
-    """)
-
-with col2:
-    st.markdown("""
-    #### 2️⃣ AI Triage
-    
-    MIMIC-IV trained model analyzes:
-    - 20 clinical features
-    - Red flag symptoms
-    - Vital sign patterns
-    - Chronic conditions
-    
-    ⚡ Predicts urgency in <1 second
-    🚨 83.5% critical detection rate
-    """)
-
-with col3:
-    st.markdown("""
-    #### 3️⃣ Smart Queue
-    
-    Optimization balances:
-    - Medical urgency (safety)
-    - Wait time fairness (equity)
-    - Throughput (efficiency)
-    
-    🎯 Updates dynamically as patients arrive
-    """)
-
-st.markdown("---")
-
-# Call to action
-st.markdown("### 🚀 Get Started")
-
-col1, col2, col3 = st.columns(3)
-
-with col1:
-    st.info("👤 **Try Patient Intake**\n\nExperience the triage form and see AI predictions in real-time.")
-    if st.button("Go to Patient Intake", use_container_width=True):
-        st.switch_page("pages/1_👤_Patient_Intake.py")
-
-with col2:
-    st.success("📊 **View Queue Dashboard**\n\nSee how ClinicTriage optimizes patient order for providers.")
-    if st.button("Go to Queue Dashboard", use_container_width=True):
-        st.switch_page("pages/2_📊_Queue_Dashboard.py")
-
-with col3:
-    st.warning("📈 **Run Simulation**\n\nCompare FCFS vs ClinicTriage with real clinic data.")
-    if st.button("Go to Simulation", use_container_width=True):
-        st.switch_page("pages/3_📈_Simulation.py")
 
 st.markdown("---")
 
