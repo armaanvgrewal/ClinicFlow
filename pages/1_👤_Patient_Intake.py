@@ -9,7 +9,9 @@ import numpy as np
 from datetime import datetime
 import pickle
 
-st.set_page_config(page_title="Patient Intake - ClinicFlow", page_icon="👤", layout="wide")
+st.set_page_config(page_title="Patient Intake - ClinicTriage", page_icon="👤", layout="wide")
+# Home link
+st.markdown("<p style='text-align: center;'><a href='/' target='_self' style='color: #1f77b4; text-decoration: none;'>🏥 ClinicTriage Home</a></p>", unsafe_allow_html=True)
 
 # Initialize session state
 if 'queue' not in st.session_state:

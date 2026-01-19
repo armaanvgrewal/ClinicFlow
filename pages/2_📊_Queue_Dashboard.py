@@ -12,6 +12,8 @@ import plotly.graph_objects as go
 from queue_optimizer import QueueOptimizer
 
 st.set_page_config(page_title="Queue Dashboard - ClinicTriage", page_icon="📊", layout="wide")
+# Home link
+st.markdown("<p style='text-align: center;'><a href='/' target='_self' style='color: #1f77b4; text-decoration: none;'>🏥 ClinicTriage Home</a></p>", unsafe_allow_html=True)
 
 # ============================================================================
 # INITIALIZE SESSION STATE
