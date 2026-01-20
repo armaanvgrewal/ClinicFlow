@@ -453,7 +453,7 @@ with st.sidebar:
         **Critical Detection:** 83.5%  
         **Critical Accuracy:** 77.7%  
         **Training:** 10K real ED visits  
-        **Source:** BIDMC Emergency Dept.
+        **Source:** MIT & BIDMC-ED
         """)
     else:
         st.info("ℹ️ Using Synthetic Model")
